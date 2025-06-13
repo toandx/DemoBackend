@@ -1,13 +1,12 @@
-FROM eclipse-temurin:17-jdk-jammy
-
-# Set the working directory in the container
+# Build Spring Boot App
+FROM maven:3.9.0-eclipse-temurin-17 AS builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the jar file into the container
-COPY target/demoBackend-0.0.1-SNAPSHOT.jar app.jar
-
-# Expose the port your app runs on
+# Run app
+FROM eclipse-temurin:17-jdk-jammy
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8081
-
-# Run the app
 ENTRYPOINT ["java", "-jar", "app.jar"]
