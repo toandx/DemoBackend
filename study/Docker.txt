@@ -1,0 +1,16 @@
+How to start Docker Desktop:
+1. Press Win + R → services.msc → find Docker Desktop Service -> start
+2. Search Docker Desktop in Start -> Run
+
+How to wrap SpringBoot app like a Docker Container:
+1. Update config DB in application.properties (replace localhost to host.docker.internal, container run in Docker, not in OS so cannot use localhost):
+spring.datasource.url=jdbc:mysql://host.docker.internal:3306/mydb
+2. Build java file by command:
+mvn install
+3. Test run SpringBoot app by cmd:
+java -jar target/demoBackend-0.0.1-SNAPSHOT.jar
+4. Create Dockerfile to config how to run in project folder
+5. Run command to build docker container:
+docker build -t demobe-app .
+6. Run docker container:
+docker run -p 8081:8081 demobe-app
