@@ -3,6 +3,7 @@ package toandx.render.demoBackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import toandx.render.demoBackend.dto.Note;
+import toandx.render.demoBackend.entity.NoteEntity;
 import toandx.render.demoBackend.service.NoteService;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class ApiController {
     }
 
     @GetMapping("/note")
-    public List<Note> getNote() {
+    public List<NoteEntity> getNote() {
         return noteService.getAll();
     }
 

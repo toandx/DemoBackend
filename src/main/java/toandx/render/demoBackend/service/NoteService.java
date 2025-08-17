@@ -1,30 +1,33 @@
 package toandx.render.demoBackend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import toandx.render.demoBackend.dto.Note;
+import toandx.render.demoBackend.entity.NoteEntity;
+import toandx.render.demoBackend.repository.NoteRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class NoteService {
-    private List<Note> listNote = new ArrayList<>();
+    @Autowired
+    private NoteRepository noteRepo;
 
-    public NoteService() {
-        listNote.add(new Note("Dat","My Brother"));
-        listNote.add(new Note("Oanh","My Sister"));
-    }
+    // Can select only 1 solution: Variable injection or Constructor injection, if use Variable inject and add empty construction, variable injection not work. noteRepo=null
+    /*public NoteService() {
+
+    }*/
 
     public Note addNote(Note note) {
-        listNote.add(note);
+        noteRepo.save(new NoteEntity(note.getTitle(), note.getContent()));
         return note;
     }
 
     public void clear() {
-        listNote.clear();
+        noteRepo.deleteAll();
     }
 
-    public List<Note> getAll() {
-        return listNote;
+    public List<NoteEntity> getAll() {
+        return noteRepo.findAll();
     }
 }
