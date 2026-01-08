@@ -1,2 +1,2 @@
 create table note(id serial primary key,
-title text, content text)
+title varchar(255), content text)

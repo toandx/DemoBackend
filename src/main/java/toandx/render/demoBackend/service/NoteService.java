@@ -30,4 +30,8 @@ public class NoteService {
     public List<NoteEntity> getAll() {
         return noteRepo.findAll();
     }
+
+    public NoteEntity getById(Long id) {
+        return noteRepo.findById(id).orElse(null);
+    }
 }

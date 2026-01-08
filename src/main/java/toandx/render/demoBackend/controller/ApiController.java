@@ -24,6 +24,11 @@ public class ApiController {
         return noteService.getAll();
     }
 
+    @GetMapping("/noteId")
+    public NoteEntity getNoteById(@RequestParam("id") Long id) {
+        return noteService.getById(id);
+    }
+
     @DeleteMapping("/note")
     public void clearNote() {
         noteService.clear();
