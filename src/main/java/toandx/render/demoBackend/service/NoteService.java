@@ -7,6 +7,7 @@ import toandx.render.demoBackend.entity.NoteEntity;
 import toandx.render.demoBackend.repository.NoteRepository;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class NoteService {
@@ -27,8 +28,8 @@ public class NoteService {
         noteRepo.deleteAll();
     }
 
-    public List<NoteEntity> getAll() {
-        return noteRepo.findAll();
+    public List<Map<String,Object>> getAllSummary() {
+        return noteRepo.findAllSummary();
     }
 
     public NoteEntity getById(Long id) {

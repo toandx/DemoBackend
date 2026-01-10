@@ -7,6 +7,7 @@ import toandx.render.demoBackend.entity.NoteEntity;
 import toandx.render.demoBackend.service.NoteService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -20,8 +21,8 @@ public class ApiController {
     }
 
     @GetMapping("/note")
-    public List<NoteEntity> getNote() {
-        return noteService.getAll();
+    public List<Map<String, Object>> getNote() {
+        return noteService.getAllSummary();
     }
 
     @GetMapping("/noteId")

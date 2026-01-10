@@ -14,7 +14,7 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")  // Allow all paths
-                        .allowedOrigins("https://toandx.github.io", "https://toandx.vercel.app", "http://localhost:3000")
+                        .allowedOrigins("https://toandx.github.io", "https://toandx.vercel.app", "http://127.0.0.1:5500")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(false);  // Set to true only if needed
