@@ -35,4 +35,13 @@ public class NoteService {
     public NoteEntity getById(Long id) {
         return noteRepo.findById(id).orElse(null);
     }
+
+    public boolean deleteById(Long id) {
+        noteRepo.deleteById(id);
+        return true;
+    }
+
+    public NoteEntity updateById(NoteEntity note) {
+        return noteRepo.save(note);
+    }
 }

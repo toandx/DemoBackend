@@ -20,8 +20,13 @@ public class ApiController {
         return "Hello World";
     }
 
+    @PostMapping("/note")
+    public Note addNote(@RequestBody Note note) {
+        return noteService.addNote(note);
+    }
+
     @GetMapping("/note")
-    public List<Map<String, Object>> getNote() {
+    public List<Map<String, Object>> getNoteSummary() {
         return noteService.getAllSummary();
     }
 
@@ -30,14 +35,19 @@ public class ApiController {
         return noteService.getById(id);
     }
 
+    @PutMapping("/noteId")
+    public NoteEntity updateNote(@RequestBody NoteEntity note) {
+        return noteService.updateById(note);
+    }
+
+    @DeleteMapping("/noteId")
+    public boolean deleteNoteId(@RequestParam("id") Long id) {
+        return noteService.deleteById(id);
+    }
+
     @DeleteMapping("/note")
     public void clearNote() {
         noteService.clear();
-    }
-
-    @PostMapping("/note")
-    public Note addNote(@RequestBody Note note) {
-        return noteService.addNote(note);
     }
 
 }
