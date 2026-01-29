@@ -15,11 +15,6 @@ public class ApiController {
     @Autowired
     private NoteService noteService;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World";
-    }
-
     @PostMapping("/note")
     public Note addNote(@RequestBody Note note) {
         return noteService.addNote(note);

@@ -1,0 +1,10 @@
+How to config Spring Security:
+1. Add dependencies for Spring Security: spring-boot-starter-security, io.jsonwebtoken
+2. Create User entity implements org.springframework.security.core.userdetails.UserDetails, or not implements but after, you must
+create new org.springframework.security.core.userdetails.UserDetails with value from User entity.
+3. Create repository for User, Authority entity. Create service UserService to CRUD user, AuthorityService to config User Role.
+4. Create JwtTokenProvider to generate JWT, decode, get info from JWT, validate JWT. Config value jwt.secret in application.properties
+5. Create JwtAuthenticationFilter, implement OncePerRequestFilter, read all API request, get JWT, setAuthentication
+6. Create SecurityConfig, add @EnableWebSecurity, define bean, config what API need JWT.
+7. Create LoginRequest, LoginResponse, UserDTO. Create AuthController, create login API, return JWT.
+8. Config DemoApplication, create default user.
