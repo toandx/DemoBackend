@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/test/**").permitAll()
-                .antMatchers("/api/**").hasAuthority("USER")
+                .antMatchers("/api/**").hasAuthority("ADMIN") // Still only need first log in, then not need pass jwt for every request
                 .anyRequest().authenticated(); // Only require logged in
                 /*.and()
                 .formLogin() // Return form login instead of 403 Forbidden
