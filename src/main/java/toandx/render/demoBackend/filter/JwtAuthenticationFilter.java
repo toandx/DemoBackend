@@ -36,7 +36,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             if (StringUtils.hasText(jwt) && (tokenProvider.validateToken(jwt)))
             {
                 String username = tokenProvider.getUsernameFromToken(jwt);
-                User user = userService.loadUserByUsername(username);
+                User user = userService.loadUserByUsername(username); // Check other document how fix bug??? So stupid.
+                // LazyInitializationException, Security Filter don't have Hibernate session / transaction -> Cannot get Authority of User
                 if (user!=null) {
                     //System.out.println("Token OK, Authen OK!");
 
@@ -63,11 +64,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private String getJwtFromRequest(HttpServletRequest request) {
         String requestTokenHeader = request.getHeader("Authorization");
         // Kiểm tra xem header Authorization có chứa thông tin jwt không
-        /*if (StringUtils.hasText(requestTokenHeader) && requestTokenHeader.startsWith("Bearer ")) {
+        if (StringUtils.hasText(requestTokenHeader) && requestTokenHeader.startsWith("Bearer ")) {
             return requestTokenHeader.substring(7);
         }
-        return null;*/
-        return requestTokenHeader;
+        return null;
     }
 }
 

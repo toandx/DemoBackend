@@ -12,8 +12,9 @@ import java.util.Date;
 public class JwtTokenProvider {
 
     //Thời gian có hiệu lực của chuỗi jwt
-    private final long JWT_EXPIRATION = 10*1000; //10 second
+    private final long JWT_EXPIRATION = 300*1000; //300 second
 
+    // HS512 require long JWT_SECRET
     @Value("${jwt.secret}")
     private String JWT_SECRET;
 

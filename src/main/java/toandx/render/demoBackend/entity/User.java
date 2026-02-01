@@ -24,7 +24,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
 
-    @ManyToMany(cascade=CascadeType.PERSIST)
+    @ManyToMany(cascade=CascadeType.PERSIST,fetch = FetchType.EAGER) // FetchType.EAGER to fix JwtAuthenticationFilter.doFilterInternal bug
     @JoinTable(name = "user_author", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Authority> authorities;
 

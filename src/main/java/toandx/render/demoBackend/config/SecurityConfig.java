@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -50,11 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         http
                 .csrf().disable()
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Config every request need JWT instead of only first login
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll()
-                .antMatchers("/test/**").permitAll()
-                .antMatchers("/api/**").hasAuthority("ADMIN") // Still only need first log in, then not need pass jwt for every request
-                .anyRequest().authenticated(); // Only require logged in
+                .antMatchers("/api/**").hasAuthority("USER") // Still only need first log in, then not need pass jwt for every request
+                .anyRequest().permitAll(); // Only require logged in
                 /*.and()
                 .formLogin() // Return form login instead of 403 Forbidden
                 .and()

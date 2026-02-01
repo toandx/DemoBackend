@@ -10,3 +10,5 @@ create table user_author(user_id int,
                          primary key (user_id, author_id),
                          foreign key (user_id) references users(id),
                          foreign key (author_id) references authority(name));
+INSERT INTO authority values ('USER');
+INSERT INTO authority values ('ADMIN');
