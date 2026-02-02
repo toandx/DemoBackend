@@ -16,8 +16,8 @@ public class WebConfig {
                 registry.addMapping("/**")  // Allow all paths
                         .allowedOrigins("https://toandx.github.io", "https://toandx.vercel.app", "http://127.0.0.1:5500")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*")
-                        .allowCredentials(false);  // Set to true only if needed
+                        .allowedHeaders("Authorization","Content-Type")
+                        .allowCredentials(true);  // Set to true only if needed
             }
         };
     }
