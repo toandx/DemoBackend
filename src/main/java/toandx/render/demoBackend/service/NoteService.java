@@ -19,8 +19,8 @@ public class NoteService {
 
     }*/
 
-    public Note addNote(Note note) {
-        noteRepo.save(new NoteEntity(note.getTitle(), note.getContent()));
+    public Note addNote(Note note, Integer userId) {
+        noteRepo.save(new NoteEntity(note.getTitle(), note.getContent(), userId));
         return note;
     }
 
@@ -28,8 +28,8 @@ public class NoteService {
         noteRepo.deleteAll();
     }
 
-    public List<Map<String,Object>> getAllSummary() {
-        return noteRepo.findAllSummary();
+    public List<Map<String,Object>> getAllSummary(Integer userId) {
+        return noteRepo.findAllSummary(userId);
     }
 
     public NoteEntity getById(Long id) {

@@ -21,8 +21,12 @@ public class NoteEntity {
     @Column(name = "content")
     private String content;
 
-    public NoteEntity(String title, String content) {
+    @Column(name = "created_by")
+    private Integer createdBy;
+
+    public NoteEntity(String title, String content, Integer createdBy) {
         this.title = title;
         this.content = content;
+        this.createdBy = createdBy;
     }
 }

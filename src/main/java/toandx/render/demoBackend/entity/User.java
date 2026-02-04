@@ -51,6 +51,10 @@ public class User implements UserDetails {
         return list;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     @Override
     public String getPassword() {
         return password;

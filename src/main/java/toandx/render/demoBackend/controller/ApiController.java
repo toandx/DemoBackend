@@ -1,9 +1,12 @@
 package toandx.render.demoBackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import toandx.render.demoBackend.dto.Note;
 import toandx.render.demoBackend.entity.NoteEntity;
+import toandx.render.demoBackend.entity.User;
 import toandx.render.demoBackend.service.NoteService;
 
 import java.util.List;
@@ -17,12 +20,12 @@ public class ApiController {
 
     @PostMapping("/note")
     public Note addNote(@RequestBody Note note) {
-        return noteService.addNote(note);
+        return noteService.addNote(note,getUserId());
     }
 
     @GetMapping("/note")
     public List<Map<String, Object>> getNoteSummary() {
-        return noteService.getAllSummary();
+        return noteService.getAllSummary(getUserId());
     }
 
     @GetMapping("/noteId")
@@ -43,6 +46,12 @@ public class ApiController {
     @DeleteMapping("/note")
     public void clearNote() {
         noteService.clear();
+    }
+
+    public Integer getUserId() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        return user.getId();
     }
 
 }

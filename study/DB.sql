@@ -1,5 +1,5 @@
 create table note(id serial primary key,
-title varchar(255), content text)
+title varchar(255), content text, created_by int)
 
 create table users(id SERIAL  PRIMARY KEY,
                    username varchar(255) UNIQUE,
